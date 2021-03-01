@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -18,6 +19,12 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*.log*
+logs
+
+# IDE
+.vscode
+.DS_Store
+
+# 据说之后会移到node_modules/.cache下
+.eslintcache
