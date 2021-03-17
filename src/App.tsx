@@ -1,10 +1,10 @@
-import React from 'react';
+import ProjectList from '@/views/ProjectList';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        jira
+        <ProjectList />
       </header>
     </div>
   );

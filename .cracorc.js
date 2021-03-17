@@ -1,6 +1,5 @@
 
 const path = require('path');
-const CracoLessPlugin = require('craco-less');
 const CracoAliasPlugin = require('craco-alias');
 const CracoSassResourcesLoader = require('craco-sass-resources-loader');
 const CracoEslintWebpackPlugin = require('craco-eslint-webpack-plugin');
@@ -34,17 +33,6 @@ module.exports = {
     }
   },
   plugins: [
-    {
-      plugin: CracoLessPlugin,
-      options: {
-        lessLoaderOptions: {
-          lessOptions: {
-            modifyVars: { '@primary-color': '#ff5b5b' },
-            javascriptEnabled: true,
-          },
-        },
-      },
-    },
     {
       plugin: CracoAliasPlugin,
       options: {

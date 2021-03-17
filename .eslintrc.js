@@ -10,6 +10,9 @@ module.exports = {
     "sourceType": "module",
     project: "./tsconfig.json",
   },
+  env: {
+    browser: true
+  },
   plugins: [
     "react",
     "react-hooks",
@@ -38,6 +41,7 @@ module.exports = {
     "linebreak-style": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "no-static-element-interactions": "off",
+    "react/react-in-jsx-scope": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "@typescript-eslint/ban-ts-comment": "off"
   }
