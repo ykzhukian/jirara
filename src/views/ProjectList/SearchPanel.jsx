@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as qs from 'qs';
-import { cleanObject } from '../../utils';
+import { cleanObject, useMount } from '../../utils';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -22,17 +22,14 @@ const SearchPanel = ({ setProjects, setUsers, users }) => {
     [params, setProjects],
   );
 
-  useEffect(
-    () => {
-      fetch(`${baseUrl}/users`).then(async (response) => {
-        if (response.ok) {
-          const data = await response.json();
-          setUsers(data);
-        }
-      });
-    },
-    [setUsers],
-  );
+  useMount(() => {
+    fetch(`${baseUrl}/users`).then(async (response) => {
+      if (response.ok) {
+        const data = await response.json();
+        setUsers(data);
+      }
+    });
+  });
 
   return (
     <div className="search-panel">
