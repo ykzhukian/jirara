@@ -1,4 +1,7 @@
-const List = ({ projects, users }) => (
+const List = ({ projects, users }: {
+  projects: Project[]
+  users: User[]
+}) => (
   <div className="project-list">
     <table>
       <tbody>

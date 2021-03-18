@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as qs from 'qs';
-import { cleanObject, useMount } from '../../utils';
+import { cleanObject, useMount, useDebounce } from '../../utils';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
-const SearchPanel = ({ setProjects, setUsers, users }) => {
+const SearchPanel = ({ setProjects, setUsers, users }: {
+  setProjects: (val: Project[]) => void
+  setUsers: (val: User[]) => void
+  users: User[]
+}) => {
   const [params, setParams] = useState({
     name: '',
     userId: '',
   });
 
-  useEffect(
-    () => {
-      fetch(`${baseUrl}/projects?${qs.stringify(cleanObject(params))}`).then(async (response) => {
-        if (response.ok) {
-          const data = await response.json();
-          setProjects(data);
-        }
-      });
-    },
-    [params, setProjects],
-  );
+  useDebounce(() => {
+    fetch(`${baseUrl}/projects?${qs.stringify(cleanObject(params))}`).then(async (response) => {
+      if (response.ok) {
+        const data = await response.json();
+        setProjects(data);
+      }
+    });
+  }, 1000);
 
   useMount(() => {
     fetch(`${baseUrl}/users`).then(async (response) => {

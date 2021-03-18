@@ -3,8 +3,8 @@ import SearchPanel from './SearchPanel';
 import List from './List';
 
 const ProjectList = () => {
-  const [projects, setProjects] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   return (
     <div>
