@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as qs from 'qs';
 import { cleanObject, useMount, useDebounce } from '../../utils';
 
@@ -14,14 +14,16 @@ const SearchPanel = ({ setProjects, setUsers, users }: {
     userId: '',
   });
 
-  useDebounce(() => {
-    fetch(`${baseUrl}/projects?${qs.stringify(cleanObject(params))}`).then(async (response) => {
+  const debounceParams = useDebounce(params, 300);
+
+  useEffect(() => {
+    fetch(`${baseUrl}/projects?${qs.stringify(cleanObject(debounceParams))}`).then(async (response) => {
       if (response.ok) {
         const data = await response.json();
         setProjects(data);
       }
     });
-  }, 1000);
+  }, [debounceParams]);
 
   useMount(() => {
     fetch(`${baseUrl}/users`).then(async (response) => {

@@ -14,18 +14,20 @@ export const useMount = (callback: () => void) => {
   useEffect(callback, []);
 };
 
-export const useDebounce = (action: any, delay: number) => {
-  const [debounce, setDebouce] = useState();
+export const useDebounce = <V>(value: V, delay: number) => {
+  const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(
     () => {
-      const timer = window.setTimeout(() => setDebouce(action), delay);
+      const timer = window.setTimeout(() => {
+        setDebounceValue(value);
+      }, delay);
       return () => {
         window.clearTimeout(timer);
       };
     },
-    [action, delay],
+    [value, delay],
   );
 
-  return debounce;
+  return debounceValue;
 };
