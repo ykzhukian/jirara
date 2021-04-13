@@ -22,7 +22,7 @@
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint --ext .ts --ext .tsx src/",
-    "json-server": "json-server __json_server_mock__/db.json --watch"
+    "json-server": "json-server __json_server_mock__/db.json --watch --middlewares  __json_server_mock__/middleware.js"
   },
   "browserslist": {
     "production": [
