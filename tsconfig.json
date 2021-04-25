@@ -32,7 +32,7 @@
   "include": [
     "types",
     "src",
-    "./*.js",
+    "./*.js"
   ],
   "extends": "./tsconfig.paths.json"
 }
